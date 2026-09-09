@@ -33,7 +33,7 @@ common:
 
 incompatibleVersion:
     title: 'Incompitalbe version'
-    description: 'Incompatible API version detected.\nTo update version, press Ctrl+F5. If this not helps, report problem to administrator.'
+    description: 'Incompatible API version detected.\nTo update version, press F12, then right-click on reload button and select "Hard reload and clear cache". If this not helps, report problem to administrator.'
     current: 'Current version'
     compatible: 'Compatible version(s)'
 
