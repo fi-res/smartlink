@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:smartlink/theme.dart';
 
-/// Плитка с одной числовой метрикой (RX, TX, температура).
 class StatCard extends StatelessWidget {
     const StatCard({required this.label, required this.value, super.key, this.color});
     final String label;

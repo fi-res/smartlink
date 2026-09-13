@@ -270,16 +270,16 @@ int average(List<double> list) {
     final List<Color> colors = [];
 
     if (last_down_relative == last_up_relative && last_up_relative != null) {
-        last_up_relative += 5;
+        last_up_relative += 1;
     }
 
-    if (last_down_relative != null) {
+    if (last_down_relative != null && last_down_relative < 168) {
         colors.add(AppColors.neo);
         stops.add(1 - (last_down_relative / 168) - 0.01);
         colors.add(AppColors.error);
         stops.add(1 - (last_down_relative / 168) + 0.01);
     }
-    if (last_up_relative != null) {
+    if (last_up_relative != null && last_up_relative < 168 && (last_down_relative != null? last_up_relative < last_down_relative : true)) {
         colors.add(AppColors.error);
         stops.add(1 - (last_up_relative / 168) - 0.01);
         colors.add(AppColors.neo);

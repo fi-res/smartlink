@@ -3,8 +3,6 @@ import 'package:smartlink/i18n.dart';
 import 'package:smartlink/theme.dart';
 import 'package:smartlink/widgets/icon_action.dart';
 
-/// Заголовок диалога: иконка с названием слева, действия и кнопка
-/// закрытия справа.
 class DialogHeader extends StatelessWidget {
     const DialogHeader({
         required this.title,
@@ -15,7 +13,6 @@ class DialogHeader extends StatelessWidget {
     final String title;
     final IconData? icon;
 
-    /// Дополнительные действия, отображаются левее кнопки закрытия.
     final List<Widget> actions;
 
     @override

@@ -47,7 +47,6 @@ class _OntDialogState extends State<OntDialog> {
     bool rewriting_sn = false;
     bool rewriting_mac = false;
 
-    bool get _online => ont?['online'] == true;
 
     @override
     void initState() {
@@ -110,7 +109,7 @@ class _OntDialogState extends State<OntDialog> {
             Navigator.pop(context);
         }
         setState(() {});
-        if (_online) {
+        if (ont?['online'] == true) {
             await _ping();
         }
     }
@@ -187,7 +186,7 @@ class _OntDialogState extends State<OntDialog> {
 
 
     String? _uptime() {
-        if (ont?['last_up'] == null || !_online) return null;
+        if (ont?['last_up'] == null || !ont?['online'] == true) return null;
 
         final DateTime? last_up = parse_api_date(ont!['last_up']);
         if (last_up == null) return null;
@@ -211,7 +210,7 @@ class _OntDialogState extends State<OntDialog> {
 
     @override
     Widget build(BuildContext context) {
-        final bool can_act = ont != null && _online;
+        final bool can_act = ont != null && ont?['online'] == true;
         final online_stops = ont != null? get_ont_online_stops(parse_api_date(ont!['last_down']), parse_api_date(ont!['last_up'])) : null;
 
         return AlertDialog(
@@ -279,6 +278,7 @@ class _OntDialogState extends State<OntDialog> {
                                         ]
                                     )
                                 ),
+                                if (ont!['online'])
                                 SectionCard(
                                     title: t.ont.ping,
                                     child: olt_ping == null? const Center(child: AngularProgressBar()) : Row(
@@ -315,6 +315,7 @@ class _OntDialogState extends State<OntDialog> {
                                     child: Column(
                                         children: [
                                             InfoTile(title: t.ont.sn, value: widget.sn),
+                                            if (ont!['ip'] != null)
                                             InfoTile(title: t.ont.ip, value: ont!['ip']),
 
                                             if (_uptime() != null)
@@ -455,17 +456,17 @@ class _OntDialogState extends State<OntDialog> {
                                     spacing: 8,
                                     children: [
                                         ElevatedButton.icon(
-                                            onPressed: restarting || ont == null || !_online? null : _restart,
+                                            onPressed: restarting || ont == null || !ont?['online'] == true? null : _restart,
                                             label: restarting? const SizedBox(height: 15, width: 15, child: CircularProgressIndicator()) : Text(t.ont.restart),
                                             icon: restarting? null : const Icon(Icons.restart_alt)
                                         ),
                                         ElevatedButton.icon(
-                                            onPressed: rewriting_sn || ont == null || !_online? null : _rewrite_sn,
+                                            onPressed: rewriting_sn || ont == null || !ont?['online'] == true? null : _rewrite_sn,
                                             label: rewriting_sn? const SizedBox(height: 15, width: 15, child: CircularProgressIndicator()) : Text(t.ont.rewrite_sn),
                                             icon: rewriting_sn? null : const Icon(Icons.save_as)
                                         ),
                                         ElevatedButton.icon(
-                                            onPressed: rewriting_sn || ont == null || !_online? null : _rewrite_mac,
+                                            onPressed: rewriting_sn || ont == null || !ont?['online'] == true? null : _rewrite_mac,
                                             label: rewriting_sn? const SizedBox(height: 15, width: 15, child: CircularProgressIndicator()) : Text(t.ont.rewrite_mac),
                                             icon: rewriting_sn? null : const Icon(Icons.settings_ethernet)
                                         )

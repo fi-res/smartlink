@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:smartlink/theme.dart';
 
-/// Подзаголовок внутри карточки: иконка, текст и разделитель.
 class SubHeading extends StatelessWidget {
     const SubHeading({required this.icon, required this.title, super.key, this.divider = true});
     final IconData icon;

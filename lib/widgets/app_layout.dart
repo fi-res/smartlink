@@ -13,7 +13,6 @@ import 'package:smartlink/widgets/tappable.dart';
 const String repo_url = 'https://github.com/fi-res/smartlink';
 const String api_repo_url = 'https://github.com/fi-res/smartlinkAPI';
 
-/// Общая обёртка страниц: подпись с версией в углу и кнопка настроек.
 class AppLayout extends StatefulWidget {
     const AppLayout({required this.child, super.key});
     final Widget child;
@@ -74,7 +73,7 @@ class _AppLayoutState extends State<AppLayout> {
                 builder: (context) => AlertDialog(
                     title: Text(t.common.force_dev_title),
                     content: GestureDetector(
-                        onTertiaryLongPress: () {
+                        onTap: () {
                             Navigator.pop(context);
                         },
                         child: Text(t.common.force_dev)

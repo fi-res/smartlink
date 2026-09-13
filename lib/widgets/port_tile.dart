@@ -2,10 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:smartlink/i18n.dart';
 import 'package:smartlink/theme.dart';
 
-/// Плитка порта ONT (CATV или ETH).
-///
-/// Цвет отражает реальное состояние линка ([up]), а серый цвет с иконкой
-/// "запрещено" - административно выключенный порт ([enabled] == false).
 class PortTile extends StatelessWidget {
     const PortTile({
         required this.label,
@@ -19,13 +15,8 @@ class PortTile extends StatelessWidget {
     });
 
     final String label;
-
-    /// Реальное состояние линка (`actual_status`).
     final bool up;
-
-    /// Административное состояние порта (`status`).
     final bool enabled;
-
     final String? duplex;
     final String? detail;
     final String tooltip;

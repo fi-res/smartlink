@@ -3,14 +3,9 @@ import 'package:smartlink/i18n.dart';
 import 'package:smartlink/theme.dart';
 import 'package:smartlink/widgets/tappable.dart';
 
-/// Сворачиваемый список бригад с чекбоксами.
-///
-/// Раньше этот блок был дважды скопирован в диалоге создания задания —
-/// отдельно для вкладки ремонта и отдельно для магистрального ремонта.
 class DivisionsPicker extends StatefulWidget {
     const DivisionsPicker({required this.divisions, required this.on_changed, super.key});
 
-    /// Список бригад; выбранные помечаются ключом `checked`.
     final List<Map> divisions;
 
     final VoidCallback on_changed;
